@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ada AI Platform — Welcome</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.bcolorandfont {
+
+  background-color: #2F6F68;
+
+  border: none;
+
+  color: white;
+
+  padding: 15px 32px;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  display: inline-block;
+
+  font-size: 16px;
+
+  margin: 4px 2px;
+
+  cursor: pointer;
+
+}
+
+
+.form-panel .form-shell {
+  width: min(100%, 520px);
+}
+
+#loginIdentifier {
+  width: 100%;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+.password-rules {
+  margin: 8px 0 0 0;
+  padding-left: 20px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.password-rules li {
+  margin: 2px 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+
+
+
+<div class="layout">
+
+
+
+   <!-- Left: welcome / brand panel -->
+
+  <div class="brand-panel">
+
+    <div class="brand-mark">Ada AI </div>
+
+
+
+    <div class="brand-content">
+
+      <p class="welcome-eyebrow">Clinician portal</p>
+
+
+
+      <div class="ecg-wrap" aria-hidden="true">
+
+         <img src="ecg-line.svg" alt="">
+
+      </div>
+
+
+
+        <p class="brand-body">Ada AI helps you track patient wellbeing, identify risks, and prioritize follow-up care.</p>
+
+
+
+         <button class="bcolorandfont" onclick="window.location.href='Dashboard.html';">
+
+         Open Dashboard
+
+         </button>
+
+    </div>
+
+
+
+    <p class="brand-footnote">  Prototype demonstration using synthetic patient data.</p>
+
+  </div>
+
+
+
+  <!-- Right: sign-in form -->
+
+  <div class="form-panel">
+
+    <div class="form-shell">
+
+
+
+      <h1 class="form-heading">Sign in</h1>
+
+      <p class="form-subhead">Enter your clinician credentials to continue.</p>
+
+
+
+      <div class="success-banner" id="successBanner" role="status">
+
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.6 7.6a1 1 0 0 1-1.4 0L3.3 10a1 1 0 1 1 1.4-1.4l3.7 3.7 6.9-6.9a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
+
+        <span>Signed in successfully. Redirecting to your dashboard…</span>
+
+      </div>
+
+
+
+      <div class="error-banner" id="errorBanner" role="alert">
+
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 6a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 6Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd"/></svg>
+
+        <span id="errorText">We couldn't sign you in. Check your email/username and password, then try again.</span>
+
+      </div>
+
+
+
+      <form id="loginForm" novalidate>
+
+        <div class="field">
+          <label for="loginIdentifier">Email or Username</label>
+          <input
+            type="text"
+            id="loginIdentifier"
+            name="loginIdentifier"
+            placeholder="Email or username"
+            autocomplete="username"
+            required
+          >
+        </div>
+
+
+
+        <div class="field">
+
+          <label for="password">Password</label>
+
+          <div class="input-wrap">
+
+            <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+
+            <button type="button" class="toggle-visibility" id="toggleVisibility" aria-label="Show password" aria-pressed="false">
+
+              <svg id="eyeIcon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6">
+
+                <path d="M1 10s3-6 9-6 9 6 9 6-3 6-9 6-9-6-9-6Z"/>
+
+                <circle cx="10" cy="10" r="2.5"/>
+
+              </svg>
+
+            </button>
+
+          </div>
+
+          <p class="field-hint">Enter the password for your account.</p>
+
+        </div>
+
+
+
+        <div class="row-between">
+
+          <label class="remember">
+
+            <input type="checkbox" id="remember" name="remember">
+
+            Keep me signed in
+
+          </label>
+
+          <a href="#" class="link">Forgot password?</a>
+
+        </div>
+
+
+
+        <button type="submit" class="submit" id="submitBtn">Sign in</button>
+
+      </form>
+
+
+
+      <div class="row-between" style="margin-top:1rem;">
+
+        <button type="button" class="link" id="showSignupBtn">Create an account</button>
+
+      </div>
+
+
+
+      <form id="signupForm" novalidate hidden style="margin-top:1rem;">
+        <div class="field">
+          <label for="signupUsername">Username</label>
+          <input
+            type="text"
+            id="signupUsername"
+            name="username"
+            minlength="3"
+            maxlength="50"
+            autocomplete="username"
+            placeholder="Choose a username"
+            required
+          >
+          <p class="field-hint">
+            3–50 characters. Letters, numbers, period, underscore, and hyphen are allowed.
+          </p>
+        </div>
+
+        <div class="field">
+          <label for="signupEmail">Email address</label>
+          <input
+            type="email"
+            id="signupEmail"
+            name="email"
+            autocomplete="email"
+            required
+            placeholder="you@hospital.org"
+          >
+        </div>
+
+        <div class="field">
+          <label for="signupPassword">Password</label>
+          <input
+            type="password"
+            id="signupPassword"
+            name="password"
+            autocomplete="new-password"
+            required
+            minlength="8"
+            placeholder="Create a password"
+          >
+          <div class="field-hint" aria-label="Password requirements">
+            <strong>Password requirements:</strong>
+            <ul class="password-rules">
+              <li>At least 8 characters</li>
+              <li>At least 1 uppercase letter (A–Z)</li>
+              <li>At least 1 lowercase letter (a–z)</li>
+              <li>At least 1 number (0–9)</li>
+              <li>At least 1 special character (for example: ! @ # $ %)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="signupConfirmPassword">Confirm password</label>
+          <input
+            type="password"
+            id="signupConfirmPassword"
+            name="confirmPassword"
+            autocomplete="new-password"
+            required
+            minlength="8"
+            placeholder="Re-enter your password"
+          >
+        </div>
+
+        <button type="submit" class="submit" id="signupBtn">Create account</button>
+        <button type="button" class="link" id="cancelSignupBtn" style="margin-top:.75rem;">
+          Back to sign in
+        </button>
+      </form>
+
+
+
+      <p class="form-footer">
+
+        Prototype account access. Use only synthetic demonstration data.
+
+    <p></p>
+
+    <div>
+
+
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+
+<script>
+  const loginForm = document.getElementById('loginForm');
+  const signupForm = document.getElementById('signupForm');
+  const loginIdentifierInput = document.getElementById('loginIdentifier');
+  const passwordInput = document.getElementById('password');
+  const errorBanner = document.getElementById('errorBanner');
+  const errorText = document.getElementById('errorText');
+  const successBanner = document.getElementById('successBanner');
+  const submitBtn = document.getElementById('submitBtn');
+  const signupBtn = document.getElementById('signupBtn');
+  const toggleBtn = document.getElementById('toggleVisibility');
+  const eyeIcon = document.getElementById('eyeIcon');
+  const showSignupBtn = document.getElementById('showSignupBtn');
+  const cancelSignupBtn = document.getElementById('cancelSignupBtn');
+
+  function showError(message) {
+    successBanner.classList.remove('visible');
+    errorText.textContent = message;
+    errorBanner.classList.add('visible');
+  }
+
+  function clearMessages() {
+    errorBanner.classList.remove('visible');
+    successBanner.classList.remove('visible');
+  }
+
+  async function callAuth(payload) {
+    const response = await fetch('api/auth.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify(payload)
+    });
+
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      throw new Error('The authentication server returned an unexpected response.');
+    }
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.error || 'Authentication failed.');
+    }
+
+    return data;
+  }
+
+  function isStrongPassword(password) {
+    return password.length >= 8 &&
+           /[A-Z]/.test(password) &&
+           /[a-z]/.test(password) &&
+           /[0-9]/.test(password) &&
+           /[^A-Za-z0-9]/.test(password);
+  }
+
+  function isValidUsername(username) {
+    return /^[A-Za-z0-9._-]{3,50}$/.test(username);
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+    toggleBtn.setAttribute('aria-pressed', String(isPassword));
+    toggleBtn.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+
+    eyeIcon.innerHTML = isPassword
+      ? '<path d="M1 10s3-6 9-6 9 6 9 6-3 6-9 6-9-6-9-6Z"/><path d="M3 3l14 14"/>'
+      : '<path d="M1 10s3-6 9-6 9 6 9 6-3 6-9 6-9-6-9-6Z"/><circle cx="10" cy="10" r="2.5"/>';
+  });
+
+  showSignupBtn.addEventListener('click', () => {
+    clearMessages();
+    loginForm.hidden = true;
+    signupForm.hidden = false;
+    showSignupBtn.style.display = 'none';
+    document.querySelector('.form-heading').textContent = 'Create account';
+    document.querySelector('.form-subhead').textContent =
+      'Choose a username, email address, and secure password.';
+  });
+
+  cancelSignupBtn.addEventListener('click', () => {
+    clearMessages();
+    signupForm.hidden = true;
+    loginForm.hidden = false;
+    showSignupBtn.style.display = '';
+    document.querySelector('.form-heading').textContent = 'Sign in';
+    document.querySelector('.form-subhead').textContent =
+      'Enter your clinician credentials to continue.';
+  });
+
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearMessages();
+
+    const loginIdentifier = loginIdentifierInput.value.trim();
+    const password = passwordInput.value;
+    const remember = document.getElementById('remember').checked;
+
+    if (!loginIdentifier || !password) {
+      return showError('Enter your email or username and password.');
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Signing in…';
+
+    try {
+      const data = await callAuth({
+        action: 'login',
+        loginIdentifier,
+        password,
+        remember
+      });
+
+      successBanner.classList.add('visible');
+      submitBtn.textContent = 'Signed in';
+      window.location.assign(data.redirect || 'Dashboard.html');
+    } catch (err) {
+      showError(err.message);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Sign in';
+    }
+  });
+
+  signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearMessages();
+
+    const username = document.getElementById('signupUsername').value.trim();
+    const emailInput = document.getElementById('signupEmail');
+    const email = emailInput.value.trim();
+    const password = document.getElementById('signupPassword').value;
+    const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+    if (!username || !email || !password || !confirmPassword) {
+      return showError('Complete all sign-up fields.');
+    }
+
+    if (!isValidUsername(username)) {
+      return showError(
+        'Username must be 3–50 characters and use only letters, numbers, period, underscore, or hyphen.'
+      );
+    }
+
+    if (!emailInput.checkValidity()) {
+      return showError('Enter a valid email address.');
+    }
+
+    if (!isStrongPassword(password)) {
+      return showError(
+        'Password must have at least 8 characters, including uppercase, lowercase, number, and special character.'
+      );
+    }
+
+    if (password !== confirmPassword) {
+      return showError('The two passwords do not match.');
+    }
+
+    signupBtn.disabled = true;
+    signupBtn.textContent = 'Creating account…';
+
+    try {
+      const data = await callAuth({
+        action: 'signup',
+        username,
+        email,
+        password
+      });
+
+      successBanner.classList.add('visible');
+      signupBtn.textContent = 'Account created';
+      window.location.assign(data.redirect || 'Dashboard.html');
+    } catch (err) {
+      showError(err.message);
+      signupBtn.disabled = false;
+      signupBtn.textContent = 'Create account';
+    }
+  });
+</script>
+
+
+
+</body>
+
+</html>

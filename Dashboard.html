@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ada AI Patient Wellbeing Analytics — V2</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="dashboard.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="page-header">
+    <div class="page-header__inner">
+      <div class="brand">
+        <h1 class="brand__title">Ada AI Patient Wellbeing Analytics</h1>
+        <span class="brand__subtitle">V2 — Multi-Intent AI Inquiry</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="card phase2-preview" aria-labelledby="phase2-heading">
+      <span class="phase2-preview__badge">V2 — Multi-Intent AI Inquiry</span>
+
+      <h2 id="phase2-heading">Ask a Patient Wellbeing Question</h2>
+
+      <p>
+        Examples:
+        <br>
+        • Find patients over age 65 with at least 2 indicators who have not had
+        a checkup in the last 12 months.
+        <br>
+        • Find patients age 65 or older with high blood pressure.
+      </p>
+
+      <label for="userInput">Enter your inquiry:</label>
+
+      <textarea
+        id="userInput"
+        rows="6"
+        maxlength="1000"
+        placeholder="Ask about wellbeing follow-up or high blood pressure..."
+      ></textarea>
+
+      <div class="phase2-preview__actions">
+        <button id="submitQuery" class="btn btn-primary" type="button">
+          Submit
+        </button>
+      </div>
+
+      <div id="message" aria-live="polite"></div>
+
+      <div id="intentDisplay" hidden>
+        <strong>Detected intent:</strong>
+        <span id="intentValue"></span>
+      </div>
+
+      <section id="aiResults" class="ai-results" aria-labelledby="results-heading" hidden>
+        <div class="card__heading">
+          <h2 id="results-heading">Patient Results</h2>
+        </div>
+
+        <div class="summary-grid ai-results__summary">
+          <div class="summary-stat">
+            <div id="resultCount" class="summary-stat__value">0</div>
+            <div class="summary-stat__label">Patients Found</div>
+          </div>
+
+          <div class="summary-stat">
+            <div
+              id="resultIntent"
+              class="summary-stat__value summary-stat__value--text"
+            >—</div>
+            <div class="summary-stat__label">Query Type</div>
+          </div>
+
+          <div class="summary-stat">
+            <div
+              id="resultAge"
+              class="summary-stat__value summary-stat__value--text"
+            >—</div>
+            <div class="summary-stat__label">Minimum Age</div>
+          </div>
+
+          <div class="summary-stat">
+            <div
+              id="resultFilter"
+              class="summary-stat__value summary-stat__value--text"
+            >—</div>
+            <div class="summary-stat__label">Primary Filter</div>
+          </div>
+        </div>
+
+        <div id="queryParameters" class="query-parameters" hidden></div>
+
+        <div id="emptyResults" class="status status--empty" hidden>
+          No patients matched this inquiry.
+        </div>
+
+        <div id="resultsTableWrapper" class="table-scroll" hidden>
+          <table class="results-table">
+            <caption id="resultsCaption">Patient query results</caption>
+            <thead id="resultsHead"></thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
+
+        <div id="continuePrompt" class="continue-prompt" hidden>
+          <span class="continue-prompt__label">Ask another question?</span>
+          <div class="continue-prompt__actions">
+            <button id="continueYes" class="btn btn-primary" type="button">Yes</button>
+            <button id="continueNo" class="btn btn-secondary" type="button">No</button>
+          </div>
+        </div>
+
+        <div id="sessionComplete" class="status status--empty" hidden>
+          Session complete. Your current results will remain on screen.
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    Patient Wellbeing Practice Project — educational demonstration.
+  </footer>
+</body>
+</html>

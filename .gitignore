@@ -1,0 +1,35 @@
+# Secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Node
+node_modules/
+ai-agent/node_modules/
+ai-agent/dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Database backups / local database files
+*.bak
+*.mdf
+*.ldf
+
+# Test credentials
+*credentials*
+*password*
+
+# Windows / editor files
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+ai-agent/my key.env.txt
